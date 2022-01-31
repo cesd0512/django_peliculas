@@ -1,0 +1,4 @@
+MySQL
+ALTER TABLE nombre_tabla RENAME nombre_nuevo_tabla;
+1
+ALTER TABLE nombre_tabla RENAME nombre_nuevo_tabla;

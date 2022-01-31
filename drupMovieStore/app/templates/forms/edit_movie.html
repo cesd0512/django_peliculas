@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drup Movie Store</title>
+  {% load static %}
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body >
+  <button 
+  type="button"
+  class="btn btn-danger"
+  onclick="window.location.href = 'http://127.0.0.1:8000/account/logout/'" 
+   style="
+   position:fixed;
+   height:40px;
+   top:40px;
+   right:40px;
+   text-align:center;
+   "
+   >
+    Salir
+  </button>
+
+  <div class="container-fluid">
+    <center>
+      <div class="container-md" style="color: #534F4F; height:120px">
+        <div class="d-flex justify-content-center" >
+           <h1 style="margin: 3%; font-size:50px">
+              Drup Movie Store
+           </h1>
+        </div>
+      </div>
+
+      <div class="container-fluid justify-content-center" >
+        <h2 style="max-width:500px; margin:50px; color: #596161;">Actualizar Película</h2>
+        <div class="text-center" style="max-width:500px; margin-top:50px; color: #596161;">
+          <form action="http://127.0.0.1:8000/movies/update/{{movie.id}}" method="post" class="container-fluid w3-card-4 w3-padding-16">
+            {% csrf_token %}
+            <div class='mb-3'>
+              <label class="form-label">Nombre</label>
+              <input class="form-control" value="{{movie.name}}" type="text" name="name" id="name"/>  
+            </div> 
+            <div class='mb-3'>
+              <label class="form-label">Duración:</label>
+              <input class="form-control" value="{{movie.duration}}" type="number" name="duration" id="duration"/>  
+            </div> 
+            <div class='mb-3'>
+              <label class="form-label">Producido por:</label>
+              <input class="form-control" value="{{movie.producers}}" type="text" name="producers" id="producers"/>  
+            </div>  
+            <div class='mb-3'>
+              <label class="form-label">Type:</label>
+              <select id="type" class="form-select" name="type">
+                <option value=""></option>
+                {% for t in types %}
+                {% if movie.type == t.id %}
+                <option value="{{t.id}}" selected>{{t.name}}</option>
+                {% else %}
+                <option value="{{t.id}}">{{t.name}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <br>
+            <div style="padding:10px; margin: 10px">
+              <button style=" margin: 10px" type="button" class="btn btn-secondary btn-lg" onclick="window.location.href = 'http://127.0.0.1:8000/home'">Regresar</button>
+              <button style="margin: 10px" type="submit" class="btn btn-success btn-lg">Actualizar</button>
+            </div>
+          </form>
+          <br>
+          <br><br><br>
+        </div>
+          
+      </div>
+      
+    </center>
+  </div>
+</body>
+</html>
